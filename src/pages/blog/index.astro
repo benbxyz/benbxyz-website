@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/page.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/formatted-date.astro';
+
+const posts = (
+  await getCollection('blog', ({ data }) => {
+    // Don't import drafts in Production
+    return import.meta.env.PROD ? data.draft !== true : true;
+  })
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title="Blog" description={`${SITE_TITLE}'s Blog`}>
+  <section>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}/`}>
+              <img width={720} height={360} src={post.data.heroImage} alt="" />
+              <h4 class="title">{post.data.title}</h4>
+              <p class="date">
+                <FormattedDate date={post.data.pubDate} />
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

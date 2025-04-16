@@ -1,0 +1,25 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Page from '../layouts/page.astro';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages', ({ data }) => {
+    // Don't import drafts in Production
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
+
+  return pages.map((page) => ({
+    params: { slug: page.id },
+    props: page,
+  }));
+}
+type Props = CollectionEntry<'pages'>;
+
+const page = Astro.props;
+const { Content } = await render(page);
+---
+
+<Page {...page.data}>
+  <Content />
+</Page>

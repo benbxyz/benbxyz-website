@@ -1,0 +1,8 @@
+/* TEAM */
+Developer: Benbxyz
+Site: https://benbxyz.com
+Twitter: @benbxyz
+Location: Earth
+
+/* TECHNOLOGY */
+Built with: TypeScript, Astro, Bun

@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/centered.astro';
+import Footer from '../components/footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import logoImage from '../assets/images/logo.png';
+---
+
+<Layout title={`${SITE_TITLE} - ${SITE_DESCRIPTION}`} description={SITE_DESCRIPTION}>
+  <div>
+    <Image src={logoImage} alt="" loading="eager" class="w-96" />
+
+    <ul class="mx-12 -mt-16 mb-12 space-y-2 text-center">
+      <li>
+        <a
+          href="https://merch.benbxyz.com"
+          class="block cursor-pointer overflow-hidden rounded-lg border-1 border-blue-600/50 bg-black/10 from-blue-600 via-white to-red-700 px-6 py-3 font-bold text-white drop-shadow-sm drop-shadow-indigo-600 backdrop-blur transition-all hover:border-white/80 hover:bg-gradient-to-b hover:text-black"
+          >Merch / Shop</a
+        >
+      </li>
+
+      <li>
+        <a
+          href="/about"
+          class="block cursor-pointer overflow-hidden rounded-lg border-1 border-blue-600/50 bg-black/10 from-blue-600 via-white to-red-700 px-6 py-3 font-bold text-white drop-shadow-sm drop-shadow-indigo-600 backdrop-blur transition-all hover:border-white/80 hover:bg-gradient-to-b hover:text-black"
+          >About</a
+        >
+      </li>
+    </ul>
+
+    <Footer />
+  </div>
+</Layout>
